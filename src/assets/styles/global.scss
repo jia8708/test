@@ -1,4 +1,4 @@
-$color:#ffc0c0;
+$color:rgba(34, 36, 66, 1);
 
 body{
     background-color:$color;
@@ -15,4 +15,11 @@ img{
     height: 32px;
     margin: 16px;
     background: rgba(255,255,255,0.3);
+}
+
+.HomeBtn{
+    position: absolute;
+    top: 32px;
+    right: 30px;
+    transform: translateY(-50%);
 }

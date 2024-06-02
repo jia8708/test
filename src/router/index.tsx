@@ -3,7 +3,8 @@ import React,{ lazy } from "react";
 import Home from    "../views/Home"
 // import About from    "../views/About"
 // import User from    "../views/User"
-import Login from    "../views/Login"
+import Login from    "../views/Login/form"
+import Page404 from    "../views/404/404"
 
 //路由懒加载
 // const About = lazy(()=>import("../views/About"))
@@ -11,6 +12,7 @@ import Login from    "../views/Login"
 const Page1 = lazy(()=>import("../views/Page1"))
 const Page2 = lazy(()=>import("../views/Page2"))
 const Page301=lazy(()=>import("../views/Page301"))
+const Page302=lazy(()=>import("../views/Page302"))
 
 
 //重定向组件
@@ -25,11 +27,12 @@ const withLoadingComponent = (comp:JSX.Element)=>(
 
 const routes=[
     
-    //嵌套路由开始------------------------
+    
     {
         path:"/",
-        element:<Navigate to="/page1"/>
+        element:<Navigate to="/login"/>
     },
+    //嵌套路由开始------------------------
     {
         path:"/",
         element:<Home/>,
@@ -45,35 +48,25 @@ const routes=[
             {
                 path:"/page3/page301",
                 element:withLoadingComponent(<Page301/>)
+            },
+            {
+                path:"/page3/page302",
+                element:withLoadingComponent(<Page302/>)
             }
         ]
     },
     //嵌套路由结束--------------------------
-
-    {
-        //如果用户访问的是不存在的页面 直接跳到首页
-        path:"*",
-        element:<Navigate to="/page1"/>
-    },
     {
         path:"/login",
         element:<Login/>
-    }
-
+    },
     
-
-    // {
-    //     path:"/home",
-    //     element:<Home/>
-    // },
-    // {
-    //     path:"/about",
-    //     element:withLoadingComponent(<About/>)
-    // },
-    // {
-    //     path:"/user",
-    //     element:withLoadingComponent(<User/>)
-    // }
+    {
+        //如果用户访问的是不存在的页面 直接跳到首页
+        path:"*",
+        element:<Page404/>
+    },
+    
 ]
 
 export default routes;
