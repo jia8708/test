@@ -9,10 +9,10 @@ import Page404 from    "../views/404/404"
 //路由懒加载
 // const About = lazy(()=>import("../views/About"))
 // const User = lazy(()=>import("../views/User"))
-const Page1 = lazy(()=>import("../views/Page1"))
-const Page2 = lazy(()=>import("../views/Page2"))
-const Page301=lazy(()=>import("../views/Page301"))
-const Page302=lazy(()=>import("../views/Page302"))
+const Page1 = lazy(()=>import("../views/Page1/Page1"))
+const Page2 = lazy(()=>import("../views/Page2/Page2"))
+const Page301=lazy(()=>import("../views/Page301/Page301"))
+const Page302=lazy(()=>import("../views/Page302/Page302"))
 
 
 //重定向组件

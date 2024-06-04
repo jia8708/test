@@ -4,19 +4,6 @@ import router from "./router"
 import { useEffect } from 'react';
 import {message} from "antd"
 
-// // 用户字段类型（如果需要，可以扩展此类型）
-// type FieldType = {
-//   username?: string;
-//   password?: string;
-//   role?:string;
-// };
-
-// // 上下文值类型
-// type UserContextType = {
-//   user: FieldType | null; // 用户对象或null
-//   login: (username: string, password: string) => void;
-//   logout: () => void;
-// };
 function App() {
   
   const location = useLocation();
@@ -35,16 +22,13 @@ function App() {
   }, [location.pathname, user, navigate]);
 
   // 使用 useRoutes 来渲染路由
-
   const outlet = useRoutes(router);
-  //const { user } = useUser() as UserContextType;
-  // console.log(user)
+
   console.log(localStorage)
   return (
-    <div className='App'>
-      {/* 占位符组件，类似于窗口，用于展示组件 */}
-      {outlet}
-    </div>
+        <div className="main-content">
+          {outlet}
+        </div>
   );
 }
 

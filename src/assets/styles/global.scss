@@ -1,4 +1,5 @@
-$color:rgba(34, 36, 66, 1);
+$color:rgb(34,36,66);
+//34,36,66
 
 body{
     background-color:$color;
@@ -11,15 +12,74 @@ img{
     -webkit-user-drag: none;
 } 
 
+//logo部分
 .demo-logo-vertical{
     height: 32px;
     margin: 16px;
     background: rgba(255,255,255,0.3);
 }
 
+//头部背景颜色
+:where(.css-dev-only-do-not-override-17seli4).ant-layout-header{
+  background-color: white;
+}
+
+//设置 按钮
 .HomeBtn{
     position: absolute;
     top: 32px;
     right: 30px;
     transform: translateY(-50%);
 }
+
+  //Modal位置设置
+.modal-center .ant-modal-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  //Modal内部items位置设置
+  .modal-center .ant-form {
+    width: 100%;
+    max-width: 200px; /* 限制表单的最大宽度，或根据需要调整 */
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  //设置Modal内部item的标签
+  :where(.css-dev-only-do-not-override-17seli4).ant-form-item .ant-form-item-label > label{
+    color:black!important;
+  }
+
+  //搜索框位置设置
+  .ant-form-item{
+    margin-top: 15px;
+    margin-bottom:15px;
+    margin-right: 10px;
+  }
+
+
+//图片设置
+.image-container {
+  display: flex;
+  flex-direction: column; /* 竖直排列 */
+  align-items: center; /* 居中对齐 */
+  gap: 16px; /* 项目之间的间隙 */
+  margin-bottom: 16px;
+}
+
+.custom-image {
+  width: 60%; /* 根据需要设置宽度 */
+  height: auto; /* 保持宽高比 */
+}
+
+//设置switch位置
+.theme-switcher {
+  position: absolute; /* 或其他定位方式 */
+  top: 22px;
+  right: 120px;
+  z-index: 1000; /* 确保它在页面内容之上 */
+}
+

@@ -1,22 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import {  Layout, theme,Button, Dropdown, Space, message } from 'antd';
+import React, { useState } from 'react';
+import {  Layout, theme,Button, Dropdown, Space, ConfigProvider,Switch } from 'antd';
 import type { MenuProps } from 'antd';
 import { Outlet } from 'react-router-dom';
 import MainMenu from "@/Menu"
-// import { useUser } from '@/LoginStatus/UserProvider';
-
-// type FieldType = {
-//   username?: string;
-//   password?: string;
-//   role?:string;
-// };
-
-// type UserContextType = {
-//   user: FieldType | null; // 用户对象或null
-//   login: (username: string, password: string) => void;
-//   logout: () => void;
-// };
-
 
   const { Header, Content, Footer, Sider } = Layout;
 
@@ -24,15 +10,13 @@ import MainMenu from "@/Menu"
 
   const [collapsed, setCollapsed] = useState(false);
 
-  //const {user,logout} = useUser() as UserContextType;//获取上下文的logout操作
-  
 function logout(){
   localStorage.removeItem('username');
       localStorage.removeItem('password');
       localStorage.removeItem('role');
       localStorage.removeItem('expires');
-}
 
+}
 
 const items: MenuProps['items'] = [
   {
@@ -46,12 +30,25 @@ const items: MenuProps['items'] = [
   
 ];
 
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
+const [themeValue,setThemeValue] = useState('default')
+
+// 切换主题的函数
+const toggleTheme = () => {
+ setThemeValue(prev => prev === 'default' ? 'dark' : 'default');
+};
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <>
+    <ConfigProvider
+      theme={{
+        algorithm: themeValue === 'default' ? theme.defaultAlgorithm : theme.darkAlgorithm,
+      }}
+    >
+      <div className="App">
+        <div className="theme-switcher">
+          <Switch checked={themeValue === 'dark'} onChange={toggleTheme} checkedChildren="夜晚" unCheckedChildren="白天"/>
+        </div>
+        <Layout style={{ minHeight: '100vh' }}>
         {/* 左边侧边栏 */}
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className="demo-logo-vertical" />
@@ -59,8 +56,8 @@ const items: MenuProps['items'] = [
       </Sider>
       {/* 右边的内容 */}
       <Layout>
-        {/* 右侧头部 */}
-        <Header style={{ paddingLeft: '16px', background: colorBgContainer }} >
+        {/* 右侧头部 , background: colorBgContainer */}
+        <Header style={{ paddingLeft: '16px'}} >
         <div>
               {localStorage && (
                 <span>
@@ -77,10 +74,9 @@ const items: MenuProps['items'] = [
         </Space>
         </Header>
         {/* 右侧内容 */}
-        <Content style={{ margin: '16px 16px 0' ,background:colorBgContainer}} >
+        <Content style={{ marginLeft:'16px',marginRight:'16px'}} >
           {/* 窗口 */}
           <Outlet/>
-          
         </Content>
         {/* 右侧底部 */}
         <Footer style={{ textAlign: 'center' ,padding:0,lineHeight:'48px'}}>
@@ -88,6 +84,9 @@ const items: MenuProps['items'] = [
         </Footer>
       </Layout>
     </Layout>
+      </div>
+    </ConfigProvider>
+    </>
   );
 };
 
