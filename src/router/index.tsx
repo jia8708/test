@@ -25,7 +25,7 @@ const withLoadingComponent = (comp:JSX.Element)=>(
     </React.Suspense>
 )
 
-const routes=[
+const adminRoutes=[
     
     
     {
@@ -68,5 +68,44 @@ const routes=[
     },
     
 ]
+
+const userRoutes=[
+    {
+        path:"/",
+        element:<Navigate to="/login"/>
+    },
+    //嵌套路由开始------------------------
+    {
+        path:"/",
+        element:<Home/>,
+        children:[
+            {
+                path:"/page1",
+                element:withLoadingComponent(<Page1/>)
+            },
+            {
+                path:"/page3/page301",
+                element:withLoadingComponent(<Page301/>)
+            },
+            {
+                path:"/page3/page302",
+                element:withLoadingComponent(<Page302/>)
+            }
+        ]
+    },
+    //嵌套路由结束--------------------------
+    {
+        path:"/login",
+        element:<Login/>
+    },
+    
+    {
+        //如果用户访问的是不存在的页面 直接跳到首页
+        path:"*",
+        element:<Page404/>
+    },
+]
+
+const routes = localStorage.getItem('role') === 'admin'?adminRoutes:userRoutes
 
 export default routes;
