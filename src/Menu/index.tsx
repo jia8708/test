@@ -1,6 +1,6 @@
 import {PieChartOutlined,UserOutlined,} from '@ant-design/icons';
   import type { MenuProps } from 'antd';
-  import {Menu,Switch } from 'antd';
+  import {Menu} from 'antd';
   import { useNavigate,useLocation } from 'react-router-dom';
   import {useState } from 'react';
 
@@ -8,19 +8,20 @@ import {PieChartOutlined,UserOutlined,} from '@ant-design/icons';
 const Comp: React.FC = ()=>{
 
 type MenuItem = Required<MenuProps>['items'][number];
+//定义了一个 MenuItem 类型，它是从 MenuProps对象 的 items 属性(items 属性是一个数组，其中包含了菜单项的配置)中提取出来的元素类型，并且确保了 items 中的所有属性都是必需的。这样，MenuItem 就可以用作 Menu 组件的菜单项元素的类型。
 
 const baseItems: MenuItem[] = [
   // ...基础菜单项
   {
     label:'用户管理',
-  key:'/page1',
-  icon:<UserOutlined />,
+    key:'/page1',
+    icon:<UserOutlined />,
   },
   {
     label: '产品管理',
-  key:  'page3',
-  icon:<PieChartOutlined />,
-  children:[
+    key:  '/page3',
+    icon:<PieChartOutlined />,
+    children:[
     {
       label:'水果',
       key:'/page3/page301',
@@ -55,23 +56,8 @@ const currentRoute = useLocation();
 
   }
 
-  //拿着currentRoute.pathname跟items数组的每一项的children的key作对比 如果相等 就要他上一级的key 给openKeys数组作初始值
-  let firstOpenKey:string="";
-  //对比
-  function findKey(obj:{key:string}){
-    return obj.key === currentRoute.pathname
-  }
-  //要对比多个children
-  for(let i=0; i<items.length; i++){
-    if(items[i]['children'] && items[i]['children']?.length>0 && items[i]['children'].find(findKey)){
-      firstOpenKey=items[i]!.key as string
-      break;
-    }
-  }
-  
-  
   //设置展开项的初始值
-  const [openKeys, setOpenKeys] = useState([firstOpenKey]);
+  const [openKeys, setOpenKeys] = useState(['']);
 
 const handleOpenChange = (keys:string[])=>{
   
@@ -80,7 +66,6 @@ const handleOpenChange = (keys:string[])=>{
   //把数组修改为只存储点击的最后一项的key 保存为最新的
   setOpenKeys([keys[keys.length-1]])
 }
-
 
 
 return (
