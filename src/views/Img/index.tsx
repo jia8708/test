@@ -8,6 +8,8 @@ interface LazyImgProps {
 const LazyImg: React.FC<LazyImgProps> = ({ src, alt }) => {
   const ref = useRef<HTMLImageElement>(null);
   const [imageSrc, setImageSrc] = useState<string>(src);
+  const [imageAlt, setImageAlt] = useState<string>(alt);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -17,6 +19,7 @@ const LazyImg: React.FC<LazyImgProps> = ({ src, alt }) => {
           const imgElement = entry.target as HTMLImageElement;
           if (entry.isIntersecting && imgElement.src !== imageSrc) {
             setImageSrc(src);
+            setImageAlt(alt);
           }
         });
       },
@@ -40,7 +43,7 @@ const LazyImg: React.FC<LazyImgProps> = ({ src, alt }) => {
     <img 
     ref={ref} 
     src={imageSrc} 
-    alt={alt} 
+    alt={imageAlt} 
     className='custom-image'
     />
   );

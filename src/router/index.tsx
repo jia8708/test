@@ -1,14 +1,10 @@
 //配置为数组的形式
 import React,{ lazy } from "react";
 import Home from    "../views/Home"
-// import About from    "../views/About"
-// import User from    "../views/User"
 import Login from    "../views/Login/form"
 import Page404 from    "../views/404/404"
 
 //路由懒加载
-// const About = lazy(()=>import("../views/About"))
-// const User = lazy(()=>import("../views/User"))
 const Page1 = lazy(()=>import("../views/Page1/Page1"))
 const Page2 = lazy(()=>import("../views/Page2/Page2"))
 const Page301=lazy(()=>import("../views/Page301/Page301"))
@@ -55,7 +51,7 @@ const adminRoutes=[
             }
         ]
     },
-    //嵌套路由结束--------------------------
+    //嵌套路由结束--------------------------React Router 会将子路由的组件渲染到父路由组件的内部。通过在父组件中使用 Outlet 组件来实现
     {
         path:"/login",
         element:<Login/>

@@ -23,8 +23,9 @@ img{
 :where(.css-dev-only-do-not-override-17seli4).ant-layout-header{
   background-color: white;
 }
+//:where()CSS伪类 可以避免因为选择器特异性过高而导致的样式覆盖问题。
 
-//设置 按钮
+//Home页面设置 按钮
 .HomeBtn{
     position: absolute;
     top: 32px;
@@ -43,7 +44,7 @@ img{
   //Modal内部items位置设置
   .modal-center .ant-form {
     width: 100%;
-    max-width: 200px; /* 限制表单的最大宽度，或根据需要调整 */
+    max-width: 200px; 
     margin-left: 0;
     margin-top: 0;
   }

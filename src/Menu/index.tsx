@@ -62,7 +62,8 @@ const currentRoute = useLocation();
 const handleOpenChange = (keys:string[])=>{
   
   //展开和回收菜单的时候执行这里的代码
-  console.log(keys)//keys是一个数组，记录了当前哪一项菜单是展开的(用key来记录的)
+  //console.log(keys)
+  //keys是一个数组，记录了当前哪一项菜单是展开的(用key来记录的)
   //把数组修改为只存储点击的最后一项的key 保存为最新的
   setOpenKeys([keys[keys.length-1]])
 }

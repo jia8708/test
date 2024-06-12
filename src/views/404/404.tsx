@@ -42,8 +42,8 @@ const App: React.FC = () => {
       <Result
     status="404"
     title="404"
-    subTitle="Sorry, the page you visited does not exist."
-    extra={<Button type="primary" onClick={BackHome}>Back Home</Button>}
+    subTitle="抱歉，网页不存在"
+    extra={<Button type="primary" onClick={BackHome}>返回</Button>}
   />
     </>
   )
