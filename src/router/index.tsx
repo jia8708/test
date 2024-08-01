@@ -22,8 +22,7 @@ const withLoadingComponent = (comp:JSX.Element)=>(
 )
 
 const adminRoutes=[
-    
-    
+       
     {
         path:"/",
         element:<Navigate to="/login"/>
@@ -102,6 +101,6 @@ const userRoutes=[
     },
 ]
 
-const routes = localStorage.getItem('role') === 'admin'?adminRoutes:userRoutes
+const routes = localStorage.getItem('role') === 'Admin'?adminRoutes:userRoutes
 
 export default routes;

@@ -37,7 +37,7 @@ const LazyImg: React.FC<LazyImgProps> = ({ src, alt }) => {
         observer.unobserve(ref.current);
       }
     };
-  }, [src]);
+  }, [src,alt]);
 
   return (
     <img 
